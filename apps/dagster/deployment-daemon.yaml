@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dagster-daemon
+  namespace: dagster
+  labels:
+    app: dagster-daemon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dagster-daemon
+  template:
+    metadata:
+      labels:
+        app: dagster-daemon
+    spec:
+      serviceAccountName: dagster-ksa
+      containers:
+        - name: daemon
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:main-latest
+          imagePullPolicy: Always
+          command: ["dagster-daemon", "run", "-m", "orchestration.definitions"]
+          envFrom:
+            - configMapRef:
+                name: dagster-config
+          volumeMounts:
+            - name: dagster-home
+              mountPath: /app/.dagster
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: dagster-home
+          emptyDir: {}

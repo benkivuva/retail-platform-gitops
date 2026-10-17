@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dagster-config
+  namespace: dagster
+data:
+  GCP_PROJECT: "retail-data-platform-511008"
+  DBT_DATASET: "staging"
+  DBT_PROFILES_DIR: "/app/dbt"
+  DAGSTER_HOME: "/app/.dagster"
