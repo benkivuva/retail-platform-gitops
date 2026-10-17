@@ -19,7 +19,7 @@ spec:
       containers:
         - name: flask
           # We are pulling the exact image we just pushed to GCP
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:main-latest
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:4942fd7667d1dc1771a535a6f9be3c0771c73d37
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
