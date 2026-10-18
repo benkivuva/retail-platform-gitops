@@ -8,3 +8,8 @@ data:
   DBT_DATASET: "staging"
   DBT_PROFILES_DIR: "/app/dbt"
   DAGSTER_HOME: "/app/.dagster"
+  dagster.yaml: |
+    storage:
+      postgres:
+        postgres_db:
+          postgres_url: { env: "DAGSTER_PG_URL" }
