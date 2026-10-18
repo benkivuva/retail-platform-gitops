@@ -18,7 +18,7 @@ spec:
       serviceAccountName: dagster-ksa
       containers:
         - name: webserver
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:dd401addd93e9e856d897981cabc1a14b062bac0
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:508e597897747529142f7b5d31a01661d95516f2
           imagePullPolicy: Always
           command: ["dagster-webserver", "-h", "0.0.0.0", "-p", "3000", "-m", "orchestration.definitions"]
           ports:
