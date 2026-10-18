@@ -27,11 +27,11 @@ spec:
             - configMapRef:
                 name: dagster-config
           env:
-            - name: DAGSTER_PG_URL
+            - name: DAGSTER_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: dagster-db-secret
-                  key: DAGSTER_PG_URL
+                  key: DAGSTER_DB_PASSWORD
           volumeMounts:
             - name: dagster-home
               mountPath: /app/.dagster

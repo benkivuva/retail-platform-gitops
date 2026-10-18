@@ -12,4 +12,7 @@ data:
     storage:
       postgres:
         postgres_db:
-          postgres_url: "{{ env_var('DAGSTER_PG_URL') }}"
+          hostname: "10.36.0.3"
+          username: "dagsteruser"
+          db_name: "dagsterdb"
+          password: { env: "DAGSTER_DB_PASSWORD" }
