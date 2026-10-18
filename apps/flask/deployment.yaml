@@ -18,7 +18,7 @@ spec:
       serviceAccountName: flask-ksa
       containers:
         - name: flask
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:main-latest
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:81e742998f10ed94c1912179e0bfa42e7e0f29f3
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
