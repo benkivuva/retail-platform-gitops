@@ -5,5 +5,4 @@ metadata:
   namespace: flask
 data:
   GCP_PROJECT: "retail-data-platform-511008"
-  DATABASE_URL: "sqlite:////app/data/platform.db"
   SECRET_KEY: "dev-secret-change-me-in-prod"

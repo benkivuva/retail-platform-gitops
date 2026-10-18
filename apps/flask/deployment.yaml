@@ -18,14 +18,19 @@ spec:
       serviceAccountName: flask-ksa
       containers:
         - name: flask
-          # We are pulling the exact image we just pushed to GCP
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:3006a9abaf64029cafa17f083b7179a8a63128d4
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:main-latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: flask-config
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: flask-db-secret
+                  key: DATABASE_URL
           resources:
             requests:
               cpu: 100m
