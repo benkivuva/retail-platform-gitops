@@ -8,11 +8,3 @@ data:
   DBT_DATASET: "staging"
   DBT_PROFILES_DIR: "/app/dbt"
   DAGSTER_HOME: "/app/.dagster"
-  dagster.yaml: |
-    storage:
-      postgres:
-        postgres_db:
-          hostname: "10.36.0.3"
-          username: "dagsteruser"
-          db_name: "dagsterdb"
-          password: { env: "DAGSTER_DB_PASSWORD" }

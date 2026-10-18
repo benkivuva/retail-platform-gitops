@@ -18,24 +18,15 @@ spec:
       serviceAccountName: dagster-ksa
       containers:
         - name: daemon
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:508e597897747529142f7b5d31a01661d95516f2
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:main-latest
           imagePullPolicy: Always
           command: ["dagster-daemon", "run", "-m", "orchestration.definitions"]
           envFrom:
             - configMapRef:
                 name: dagster-config
-          env:
-            - name: DAGSTER_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: dagster-db-secret
-                  key: DAGSTER_DB_PASSWORD
           volumeMounts:
             - name: dagster-home
               mountPath: /app/.dagster
-            - name: dagster-config-vol
-              mountPath: /app/.dagster/dagster.yaml
-              subPath: dagster.yaml
           resources:
             requests:
               cpu: 100m
@@ -46,7 +37,3 @@ spec:
       volumes:
         - name: dagster-home
           emptyDir: {}
-        - name: dagster-config-vol
-          configMap:
-            name: dagster-config
-            
