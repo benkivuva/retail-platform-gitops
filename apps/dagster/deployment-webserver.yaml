@@ -18,7 +18,7 @@ spec:
       serviceAccountName: dagster-ksa
       containers:
         - name: webserver
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:81e742998f10ed94c1912179e0bfa42e7e0f29f3
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:main-latest
           imagePullPolicy: Always
           command: ["dagster-webserver", "-h", "0.0.0.0", "-p", "3000", "-m", "orchestration.definitions"]
           ports:
@@ -26,9 +26,18 @@ spec:
           envFrom:
             - configMapRef:
                 name: dagster-config
+          env:
+            - name: DAGSTER_PG_URL
+              valueFrom:
+                secretKeyRef:
+                  name: dagster-db-secret
+                  key: DAGSTER_PG_URL
           volumeMounts:
             - name: dagster-home
               mountPath: /app/.dagster
+            - name: dagster-config-vol
+              mountPath: /app/.dagster/dagster.yaml
+              subPath: dagster.yaml
           resources:
             requests:
               cpu: 100m
@@ -39,3 +48,6 @@ spec:
       volumes:
         - name: dagster-home
           emptyDir: {}
+        - name: dagster-config-vol
+          configMap:
+            name: dagster-config
