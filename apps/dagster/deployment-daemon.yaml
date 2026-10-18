@@ -18,7 +18,7 @@ spec:
       serviceAccountName: dagster-ksa
       containers:
         - name: daemon
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:4942fd7667d1dc1771a535a6f9be3c0771c73d37
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:3006a9abaf64029cafa17f083b7179a8a63128d4
           imagePullPolicy: Always
           command: ["dagster-daemon", "run", "-m", "orchestration.definitions"]
           envFrom:
