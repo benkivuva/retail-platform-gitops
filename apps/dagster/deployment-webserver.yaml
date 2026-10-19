@@ -18,6 +18,7 @@ spec:
       serviceAccountName: dagster-ksa
       securityContext:
         runAsNonRoot: true
+        runAsUser: 1000
       containers:
         - name: webserver
           image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:main-latest
