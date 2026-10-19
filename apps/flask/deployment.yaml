@@ -16,9 +16,11 @@ spec:
         app: flask-app
     spec:
       serviceAccountName: flask-ksa
+      securityContext:
+        runAsNonRoot: true
       containers:
         - name: flask
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:508e597897747529142f7b5d31a01661d95516f2
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:main-latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
