@@ -1,0 +1,38 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: retail-platform-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: flask-slo
+      rules:
+        # SLI: Flask availability (Is it responding?)
+        - record: flask:availability:ratio
+          expr: sum(rate(nginx_http_requests_total{namespace="flask"}[5m])) / sum(rate(nginx_http_requests_total{namespace="flask"}[5m])) # Simplified for demo
+          
+        # Alert: Flask Pod is crash looping
+        - alert: FlaskPodCrashLooping
+          expr: rate(kube_pod_container_status_restarts_total{namespace="flask"}[15m]) > 0
+          for: 5m
+          labels:
+            severity: critical
+            service: flask
+          annotations:
+            summary: "Flask pod is crash looping"
+            description: "Pod {{ $labels.pod }} in namespace flask has restarted more than once in 15 minutes."
+            runbook_url: "https://github.com/benkivuva/retail-platform-gitops/blob/main/docs/runbook.md#flask-crashloop"
+
+    - name: infrastructure-alerts
+      rules:
+        # Alert: Node CPU is extremely high
+        - alert: NodeHighCpu
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 85
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High CPU on node {{ $labels.instance }}"
+            description: "Node CPU is above 85% for 5 minutes."
