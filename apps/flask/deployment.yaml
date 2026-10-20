@@ -26,7 +26,7 @@ spec:
           effect: "NoSchedule"
       containers:
         - name: flask
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:main-latest
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/flask-app:ee95818a3ccb25c9c400e588d7aeb39cd9ef0eb0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

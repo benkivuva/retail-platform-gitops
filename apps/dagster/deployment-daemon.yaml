@@ -21,7 +21,7 @@ spec:
         runAsUser: 1000
       containers:
         - name: daemon
-          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:main-latest
+          image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/dagster:ee95818a3ccb25c9c400e588d7aeb39cd9ef0eb0
           imagePullPolicy: Always
           command: ["dagster-daemon", "run", "-m", "orchestration.definitions"]
           envFrom:
