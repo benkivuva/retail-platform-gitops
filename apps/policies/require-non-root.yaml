@@ -20,6 +20,8 @@ spec:
               - kyverno
               - monitoring
               - argocd
+              - ingress-nginx
+              - external-secrets
       validate:
         message: "Running as root is not allowed. Set securityContext.runAsNonRoot=true."
         pattern:
