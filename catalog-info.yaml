@@ -11,3 +11,10 @@ spec:
   lifecycle: production
   owner: guests
   system: retail-data-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: benkivuva
+spec:
+  memberOf: [guests]
