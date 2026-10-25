@@ -4,9 +4,14 @@ metadata:
   name: backstage-ingress
   namespace: backstage
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - backstage.34.136.31.203.nip.io
+      secretName: backstage-tls
   rules:
     - host: backstage.34.136.31.203.nip.io
       http:
