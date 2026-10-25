@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: retail-platform-gitops
+  description: ArgoCD ApplicationSets and Kubernetes Manifests
+  annotations:
+    github.com/project-slug: benkivuva/retail-platform-gitops
+    argocd/app-selector: backstage
+spec:
+  type: gitops
+  lifecycle: production
+  owner: guests
+  system: retail-data-platform
