@@ -18,6 +18,11 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
+      tolerations:
+        - key: "cloud.google.com/gke-spot"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
       containers:
         - name: backstage
           image: us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/backstage:main-latest
