@@ -6,7 +6,7 @@ metadata:
   labels:
     app: storefront-api
 spec:
-  replicas: 2
+  replicas: 3
   revisionHistoryLimit: 3
   strategy:
     type: RollingUpdate
